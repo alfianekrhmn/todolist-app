@@ -6,8 +6,8 @@ const Todo = require('../models/Todo');
 // Fungsi: Mengambil semua todo dari database
 router.get('/', async (req, res) => {
     try {
-        const todos = await Todo.find().sort({createdAt: -1}); //Mengambil semua todo, urutkan dari yang terbaru
-        res.status(200).json(todos); // kirim respon sukses dengan data todos
+        const todos = await Todo.find(); // kirim respon sukses dengan data todos
+        res.json(todos)
     }catch (err) {
         res.status(500).json({eror: `Gagal mengambil todo`});
     }
@@ -34,7 +34,7 @@ router.put('/:id', async (req, res) => {
     const { title, completed } = req.body;
 
     try {
-        const updatedTodo = await Todo.findByAndUpdate(
+        const updatedTodo = await Todo.findByIdAndUpdate(
             id,
             { title, completed }, // Data yang diubah
             {new: true} // new: true artinya kirim data yang sudah diupdate

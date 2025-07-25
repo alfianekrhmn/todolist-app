@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-const todoRoutes = require('.routes/todos'); // Import routes dari file
+const todoRoutes = require('./routes/todos'); // Import routes dari file
 
 // Semua Request ke /api/todos akan diarahkan ke routes/todos.js
 app.use('/api/todos', todoRoutes)
